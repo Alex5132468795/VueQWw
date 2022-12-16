@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css.css">
+
+</head>
+<body>
+<div id="qwq">
+    <h1
+            v-bind:style='{color:inputValue.length>5 && inputValue.length<10 ? "green" : "red"}'
+    >
+        Список заметок
+        <!--v-if="inputValue.length > 5 || inputValue < 10 "-->
+    </h1>
+    <input type="text"
+        v-model="inputValue"
+        v-on:keyup.enter="AddNew(inputValue), Two"
+
+    >
+    <button
+        v-on:click="AddNew(inputValue),  Two"
+    >Enter</button>
+    <hr>
+        <ul v-for="(item,index) in ArrV">
+            <li
+                v-bind:style='{color:item.length>5 && item.length<10 ? "green" : "black"}'
+            >
+                ({{index+1}}) {{item.toUpperCase()}}
+            </li>
+            <button
+                v-on:click="Remove(index), Two"
+            >
+                Delete
+            </button>
+        </ul>
+    <hr>
+    <div v-if="ArrV.length>0">
+        Общее количество: {{ArrV.length}} | Удвоенное: {{twi}}
+    </div>
+    <div v-else>
+        Ничего
+    </div>
+</div>
+<script src="https://unpkg.com/vue@next"></script>
+<script src="js.js"></script>
+</body>
+</html>
